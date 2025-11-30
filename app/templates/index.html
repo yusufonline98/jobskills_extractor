@@ -1,1 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>JobSkills Extractor</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <div class="container">
+    <h1>JobSkills Extractor (Light Theme)</h1>
+    <form method="post" action="/extract">
+      <label for="jd">Paste Job Description</label>
+      <textarea id="jd" name="job_description" placeholder="Paste the job description here..." required>{{ input_jd if input_jd else '' }}</textarea>
+      <button type="submit">Extract Skills & Generate Bullets</button>
+    </form>
+
+    {% if result %}
+      <div class="result">
+        {% if result.error %}
+          <h3>Error</h3>
+          <pre>{{ result.error }}</pre>
+          {% if result.raw %}
+            <h4>Raw model output</h4>
+            <pre>{{ result.raw }}</pre>
+          {% endif %}
+        {% else %}
+          <h3>Extracted Skills</h3>
+          <p><strong>Technical:</strong> {{ result.technical }}</p>
+          <p><strong>Tools:</strong> {{ result.tools }}</p>
+          <p><strong>Soft Skills:</strong> {{ result.soft }}</p>
+          <p><strong>Certifications:</strong> {{ result.certifications }}</p>
+
+          <h3>Suggested Resume Bullets</h3>
+          <ol>
+            {% for b in result.bullets %}
+              <li>{{ b }}</li>
+            {% endfor %}
+          </ol>
+        {% endif %}
+      </div>
+    {% endif %}
+  </div>
+</body>
+</html>
 
