@@ -22,7 +22,7 @@ Job Description:
 prompt = PromptTemplate(input_variables=["job_description"], template=TEMPLATE)
 
 def run_extraction(job_description: str):
-    llm = OpenAI(openai_api_key=OPENAI_API_KEY, temperature=0.0)
+    llm = OpenAI(openai_api_key=AIzaSyCVp0o3O45BlBg6NtPyRXGzwjDPmWzqbtE, temperature=0.0)
     chain = LLMChain(llm=llm, prompt=prompt)
     raw = chain.run(job_description)
     try:
