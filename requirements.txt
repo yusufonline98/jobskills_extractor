@@ -1,1 +1,7 @@
+fastapi==0.95.2
+uvicorn[standard]==0.22.0
+jinja2==3.1.2
+langchain==0.0.266
+openai==1.0.0
+python-multipart==0.0.5
 
